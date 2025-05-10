@@ -1,0 +1,6 @@
+venv/
+images/
+video/
+models/
+__pycache__
+share/
