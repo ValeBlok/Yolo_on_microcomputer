@@ -6,6 +6,7 @@ from datetime import datetime
 from openpyxl import Workbook
 from openpyxl.utils import get_column_letter
 from system_monitor import start_monitoring, stop_monitoring
+import subprocess
 
 # Настройки путей
 INPUT_DIR = "images"
@@ -79,6 +80,15 @@ def process_image(model, img_path):
         ", ".join(confs) if confs else "0"
     ]
 
+def get_power_usage():
+    result = subprocess.run(["vcgencmd", "measure_volts"], capture_output=True, text=True)
+    volts = result.stdout.strip()
+    result = subprocess.run(["vcgencmd", "measure_clock", "arm"], capture_output=True, text=True)
+    clock = result.stdout.strip()
+    print(
+        f"Voltage: {volts}\n"
+        f"Clock: {clock}")
+
 def main():
 
     # Инициализация мониторинга системы
@@ -138,6 +148,7 @@ def main():
                 print(f"Time: {final_time}")
         except Exception as e:
             print(f"Ошибка при анализе метрик: {e}")
+        get_power_usage()
 
 if __name__ == "__main__":
     main()
