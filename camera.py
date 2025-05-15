@@ -11,7 +11,7 @@ from picamera2 import Picamera2
 # Настройки путей
 MODEL = "models/yolov8n.pt"
 SYSTEM_METRICS_FILE = f"share/system_metrics.csv"
-EXCEL_FILE = f"share/results_r5/camera_results_{MODEL.split('.')[0]}.xlsx"
+EXCEL_FILE = f"share/results_r5/camera_results_{MODEL.split('/')[-1].split('.')[0]}.xlsx"
 VIDEO_OUTPUT = f"share/save_videos_from_camera/output_video_{datetime.now().strftime('%Y%m%d_%H%M%S')}.mp4"
 FRAMES_DIR = f"share/save_frames_from_camera"
 NUMBER_OF_FRAMES = 10

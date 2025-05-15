@@ -10,12 +10,12 @@ import subprocess
 
 # Настройки путей
 INPUT_DIR = "images"
-MODEL = "models/yolov8n.pt"
-# OUTPUT_DIR = f"share/results_{MODEL.split('.')[0]}" # Не используется
+MODEL = "models/yolov8s.pt"
+OUTPUT_DIR = f"share/save_images_{MODEL.split('.')[0]}" # Не используется
 SYSTEM_METRICS_FILE = f"share/system_metrics.csv"
-EXCEL_FILE = f"share/results_r5/images_results_{MODEL.split('.')[0]}.xlsx"
+EXCEL_FILE = f"share/results_r4/images_results_{MODEL.split('/')[-1].split('.')[0]}.xlsx"
 
-# os.makedirs(OUTPUT_DIR, exist_ok=True)
+os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 def init_file():
     """Создает новый Excel-файл с шапкой"""
@@ -59,9 +59,9 @@ def process_image(model, img_path):
 
     # Сохранение изображения с bbox
     base_name = os.path.basename(img_path)
-    # output_path = os.path.join(output_dir, f"result_{base_name}")
-    # result_img = results[0].plot()
-    # cv2.imwrite(output_path, result_img)
+    output_path = os.path.join(OUTPUT_DIR, f"result_{base_name}")
+    result_img = results[0].plot()
+    cv2.imwrite(output_path, result_img)
 
     # Детекция объектов
     detected = []

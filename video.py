@@ -9,9 +9,9 @@ from threading import Thread
 from ultralytics import YOLO
 import os
 
-MODEL = "models/yolov8n.pt"
+MODEL = "models/yolov8m.pt"
 VIDEO_PATH = "video/street_short.mp4"
-OUTPUT_FILE = f"share/results_r5/video_results_{MODEL.split('.')[0]}.txt"
+OUTPUT_FILE = f"share/results_r5/video_results_{MODEL.split('/')[-1].split('.')[0]}.txt"
 
 class VideoProcessor:
     def __init__(self):
